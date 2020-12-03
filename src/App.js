@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import CurrencyRow from './CurrencyRow'
+import CurrencyRow from './CurrencyRow.js';
 
 const BASE_URL = 'https://api.exchangeratesapi.io/latest'
 
@@ -24,15 +24,15 @@ function App() {
 
 
   useEffect(() => {
-     fetch(BASE_URL)
-       .then(res => res.json())
-       .then(data => {
-         const firstCurrency = Object.keys(data.rates)[0]
-         setCurrencyOptions([data.base, ...Object.keys(data.rates)])
-         setFromCurrency(data.base)
-         setToCurrency(firstCurrency)
-         setExchangeRate(data.rates[firstCurrency])
-       })
+      fetch(BASE_URL)
+      .then(res => res.json())
+      .then(data => {
+      const firstCurrency = Object.keys(data.rates)[0]
+      setCurrencyOptions([data.base, ...Object.keys(data.rates)])
+      setFromCurrency(data.base)
+      setToCurrency(firstCurrency)
+      setExchangeRate(data.rates[firstCurrency])
+    })
   },  [])
 
   useEffect(() => {
@@ -65,7 +65,7 @@ function App() {
         onChangeCurrency={e => setFromCurrency(e.target.value)}
         onChangeAmount={handleFromAmountChange}
         amount={fromAmount}
-       />
+      />
       <div className="equals">=</div>
       <CurrencyRow
         currencyOptions={currencyOptions}
